@@ -8,6 +8,7 @@ namespace QuizProgramowanie.Database.DTO
 {
     class QuestionDTO
     {
+        public Guid Id { get; set; }
         public string Content { get; set; }
         public ICollection<AnswerDTO> Answers{ get; set; }
     }
