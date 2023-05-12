@@ -22,22 +22,15 @@ namespace QuizPOG
         protected override void OnStartup(StartupEventArgs e)
         {
 
-            string connectionString = "Data Source=QuizProg.db";
-
-
-            QuizDBContextFactory quizDBContextFactory = new QuizDBContextFactory(
-                new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
-
             NavigationStore navigationStore = new NavigationStore();
-            navigationStore.CurrentViewModel = new QuestionListViewModel(navigationStore);
 
 
-            QuizDBContext context = quizDBContextFactory.Create();
+            QuizDBContext context = new QuizDBContext();
             context.Database.EnsureCreated();
-            context.Database.Migrate();
 
             DatabaseLocator.QuizDBContext = context;
 
+            navigationStore.CurrentViewModel = new QuestionListViewModel(navigationStore);
 
             MainWindow window = new MainWindow()
             {
@@ -45,6 +38,12 @@ namespace QuizPOG
             };
             window.Show();
             base.OnStartup(e);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            DatabaseLocator.QuizDBContext.Dispose();
+            base.OnExit(e);
         }
     }
 }

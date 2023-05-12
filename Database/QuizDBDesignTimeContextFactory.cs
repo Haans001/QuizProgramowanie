@@ -12,7 +12,7 @@ namespace QuizProgramowanie.Database
     {
         public QuizDBContext CreateDbContext(string[] args = null)
         {
-            return new QuizDBContext(new DbContextOptionsBuilder().UseSqlite("Data Source=QuizProg.db").Options);
+            return new QuizDBContext();
         }
     }
 }

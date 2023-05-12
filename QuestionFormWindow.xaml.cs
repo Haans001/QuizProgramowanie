@@ -17,9 +17,9 @@ namespace QuizPOG
     /// <summary>
     /// Logika interakcji dla klasy AddQuestionWindow.xaml
     /// </summary>
-    public partial class AddQuestionWindow : Window
+    public partial class QuestionFormWindow : Window
     {
-        public AddQuestionWindow()
+        public QuestionFormWindow()
         {
             InitializeComponent();
         }

@@ -1,6 +1,8 @@
-﻿using QuizGenerator.Core.Helpers.Commands;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using QuizGenerator.Core.Helpers.Commands;
 using QuizPOG.Model;
 using QuizPOG.Store;
+using QuizProgramowanie.Database;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,22 +29,13 @@ namespace QuizPOG.ViewModel
         public QuestionListViewModel(NavigationStore navigationStore)
         {
 
-            Questions = new ObservableCollection<QuestionListItemViewModel>
-            {
-                new QuestionListItemViewModel(new Question("Dokąd nocą tupta jeż?",
-                    new Answer("Do dupy", false),
-                    new Answer("Do domu", true),
-                    new Answer("Pod koła", true),
-                    new Answer("Na dupy", false))
-                ),
+            Questions = new ObservableCollection<QuestionListItemViewModel>();
 
-               new QuestionListItemViewModel(new Question("Co robi Jan?",
-                   new Answer("Pije", false),
-                   new Answer("Je", true),
-                   new Answer("Uczy się", true),
-                   new Answer("Gra", false))
-               )
-            };
+
+            foreach (Question q in QuestionsRepository.GetQuestions())
+            {
+                Questions.Add(new QuestionListItemViewModel(q));
+            }
 
             this._navigationStore = navigationStore;
 
@@ -52,9 +45,9 @@ namespace QuizPOG.ViewModel
 
         private void OpenAddQuestionWindow()
         {
-            this.AddQuestionWindow = new AddQuestionWindow()
+            this.AddQuestionWindow = new QuestionFormWindow()
             {
-                DataContext = new QuestionFormViewModel(this)
+                DataContext = new AddQuestionFormViewModel(this)
             };
             AddQuestionWindow.ShowDialog();
         }
@@ -66,6 +59,7 @@ namespace QuizPOG.ViewModel
 
         public void AddQuestion(Question q)
         {
+            QuestionsRepository.AddQuestion(q);
             this.Questions.Add(new QuestionListItemViewModel(q));
             AddQuestionWindow.Close();
         }

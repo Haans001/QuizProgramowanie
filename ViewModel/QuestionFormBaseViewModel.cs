@@ -1,18 +1,15 @@
 ﻿using QuizGenerator.Core.Helpers.Commands;
-using QuizPOG.Model;
+using QuizPOG.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
-namespace QuizPOG.ViewModel
+namespace QuizProgramowanie.ViewModel
 {
-    public class QuestionFormViewModel : BaseViewModel
+    public class QuestionFormBaseViewModel : BaseViewModel
     {
         private string quest;
         private string ans1;
@@ -24,16 +21,7 @@ namespace QuizPOG.ViewModel
         private bool chk3;
         private bool chk4;
 
-        private readonly QuestionListViewModel _questionListViewMode;
-
         public ICommand SubmitFormCommand { get; set; }
-
-        public QuestionFormViewModel(QuestionListViewModel questionListViewMode)
-        {
-            this._questionListViewMode = questionListViewMode;
-
-            this.SubmitFormCommand = new RelayCommand(Submit);
-        }
 
         public string Quest
         {
@@ -53,7 +41,7 @@ namespace QuizPOG.ViewModel
                 OnPropertyChanged(nameof(Ans1));
             }
         }
-        public string Ans2 
+        public string Ans2
         {
             get { return ans2; }
             set
@@ -62,7 +50,7 @@ namespace QuizPOG.ViewModel
                 OnPropertyChanged(nameof(Ans2));
             }
         }
-        public string Ans3 
+        public string Ans3
         {
             get { return ans3; }
             set
@@ -71,7 +59,7 @@ namespace QuizPOG.ViewModel
                 OnPropertyChanged(nameof(Ans3));
             }
         }
-        public string Ans4 
+        public string Ans4
         {
             get { return ans4; }
             set
@@ -119,21 +107,6 @@ namespace QuizPOG.ViewModel
                 chk4 = value;
                 OnPropertyChanged(nameof(Chk4));
             }
-        }
-
-
-        public ICommand EditCommand { get; }
-        public ICommand ClearCommand { get; }
-
-        private void Submit()
-        {
-            Answer answer1 = new Answer(Ans1, Chk1);
-            Answer answer2 = new Answer(Ans2, Chk2);
-            Answer answer3 = new Answer (Ans3, Chk3);
-            Answer answer4 = new Answer (Ans4, Chk4);
-            Question question = new Question(Quest, answer1, answer2, answer3, answer4);
-
-            this._questionListViewMode.AddQuestion(question);
         }
     }
 }

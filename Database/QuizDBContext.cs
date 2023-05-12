@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using QuizProgramowanie.Database.DTO;
+using QuizPOG.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +11,8 @@ namespace QuizProgramowanie.Database
     class QuizDBContext : DbContext
     {
 
-        public DbSet<QuestionDTO> Questions { get; set; }
-        public QuizDBContext(DbContextOptions options) : base(options)
+        public DbSet<Question> Questions { get; set; }
+        public QuizDBContext() : base(new DbContextOptionsBuilder().UseSqlite("Data Source=QuizProg.db").Options)
         {
         }
 
