@@ -27,11 +27,13 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="{Binding Content}" />
-                            <Button Grid.Column="1" Content="Edytuj" Margin="30 0 0 0" />
-                        </Grid>
+                            <TextBlock Grid.Column="0" Text="{Binding QuizTitle}" />
+                        <Button Grid.Column="1" Content="Edytuj pytania" Margin="30 0 0 0" Command="{Binding NavigateToQuestListCommand}"/>
+                        <Button Grid.Column="2" Content="Rozwiąż"  Margin="30 0 0 0"/>
+                    </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

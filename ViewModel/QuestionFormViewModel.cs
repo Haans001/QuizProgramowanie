@@ -14,7 +14,6 @@ namespace QuizPOG.ViewModel
 {
     public class QuestionFormViewModel : BaseViewModel
     {
-
         private string quest;
         private string ans1;
         private string ans2;
