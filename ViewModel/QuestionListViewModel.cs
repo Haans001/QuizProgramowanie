@@ -3,6 +3,7 @@ using QuizGenerator.Core.Helpers.Commands;
 using QuizPOG.Model;
 using QuizPOG.Store;
 using QuizProgramowanie.Database;
+using QuizProgramowanie.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,7 +35,7 @@ namespace QuizPOG.ViewModel
 
             foreach (Question q in QuestionsRepository.GetQuestions())
             {
-                Questions.Add(new QuestionListItemViewModel(q));
+                Questions.Add(new QuestionListItemViewModel(q, this));
             }
 
             this._navigationStore = navigationStore;
@@ -60,8 +61,16 @@ namespace QuizPOG.ViewModel
         public void AddQuestion(Question q)
         {
             QuestionsRepository.AddQuestion(q);
-            this.Questions.Add(new QuestionListItemViewModel(q));
+            this.Questions.Add(new QuestionListItemViewModel(q, this));
             AddQuestionWindow.Close();
+        }
+
+        public void EditQuestion(Question q, Guid id)
+        {
+            var found = this.Questions.FirstOrDefault(q => q.Question.Id == id);
+            int i = this.Questions.IndexOf(found);
+            this.Questions[i] = new QuestionListItemViewModel(q, this);
+            QuestionsRepository.UpdateQuestion(q);
         }
 
     }

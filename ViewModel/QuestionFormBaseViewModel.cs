@@ -1,4 +1,5 @@
 ﻿using QuizGenerator.Core.Helpers.Commands;
+using QuizPOG.Model;
 using QuizPOG.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace QuizProgramowanie.ViewModel
         private bool chk4;
 
         public ICommand SubmitFormCommand { get; set; }
+
 
         public string Quest
         {
@@ -107,6 +109,39 @@ namespace QuizProgramowanie.ViewModel
                 chk4 = value;
                 OnPropertyChanged(nameof(Chk4));
             }
+        }
+
+        protected Question convertFormValuesToQuestion()
+        {
+            return new Question()
+            {
+                Content = Quest,
+                Answers = new List<Answer>()
+                {
+                    new Answer()
+                    {
+                        Content = Ans1,
+                        IsCorrect = Chk1
+                    },
+                    new Answer()
+                    {
+                        Content = Ans2,
+                        IsCorrect = Chk2
+                    },
+                    new Answer()
+                    {
+                        Content = Ans3,
+                        IsCorrect = Chk3
+                    },
+                    new Answer()
+                    {
+                        Content = Ans4,
+                        IsCorrect = Chk4
+                    }
+
+                }
+            };
+
         }
     }
 }

@@ -21,43 +21,12 @@ namespace QuizPOG.ViewModel
         public AddQuestionFormViewModel(QuestionListViewModel questionListViewMode)
         {
             this._questionListViewMode = questionListViewMode;
-
             this.SubmitFormCommand = new RelayCommand(Submit);
         }
 
         private void Submit()
         {
-
-            Question question = new Question()
-            {
-                Content = Quest,
-                Answers = new List<Answer>()
-                {
-                    new Answer()
-                    {
-                        Content = Ans1,
-                        IsCorrect = Chk1
-                    },
-                    new Answer()
-                    {
-                        Content = Ans2,
-                        IsCorrect = Chk2
-                    },
-                    new Answer()
-                    {
-                        Content = Ans3,
-                        IsCorrect = Chk3
-                    },
-                    new Answer()
-                    {
-                        Content = Ans4,
-                        IsCorrect = Chk4
-                    }
-
-                }
-            };
-
-            this._questionListViewMode.AddQuestion(question);
+            this._questionListViewMode.AddQuestion(this.convertFormValuesToQuestion());
         }
     }
 }

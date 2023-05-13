@@ -32,7 +32,7 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0" Text="{Binding Content}" />
-                        <Button Grid.Column="1" Content="Edytuj" Margin="30 0 0 0" />
+                        <Button Grid.Column="1" Content="Edytuj" Command="{Binding EditCommand}" Margin="30 0 0 0" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
