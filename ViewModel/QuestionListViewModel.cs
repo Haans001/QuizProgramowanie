@@ -61,7 +61,7 @@ namespace QuizPOG.ViewModel
 
         private void NavigateToQuizList()
         {
-            this._navigationStore.CurrentViewModel = new QuizListViewModel();
+            this._navigationStore.CurrentViewModel = new QuizListViewModel(this._navigationStore);
         }
 
         public void AddQuestion(Question q)
