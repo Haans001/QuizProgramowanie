@@ -1,7 +1,9 @@
 ﻿using QuizGenerator.Core.Helpers.Commands;
 using QuizPOG.Store;
+using QuizProgramowanie.Database.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,22 +13,23 @@ namespace QuizPOG.ViewModel
 {
     public class QuizListItemViewModel
     {
-        public string Title;
-        public string QuizTitle => Title;
+        private readonly Quiz _quiz;
+        public string QuizTitle => _quiz.Title;
 
         private readonly NavigationStore _navigationStore;
         public ICommand NavigateToQuestListCommand { get; set; }
 
-        public QuizListItemViewModel(string title, NavigationStore navigationStore)
+        public QuizListItemViewModel(Quiz quiz, NavigationStore navigationStore)
         {
-            this.Title = title;
+            this._quiz = quiz;
             _navigationStore = navigationStore;
             NavigateToQuestListCommand = new RelayCommand(NavigateToQuestList);
+
         }
 
         private void NavigateToQuestList()
         {
-            _navigationStore.CurrentViewModel = new QuestionListViewModel(_navigationStore);
+            _navigationStore.CurrentViewModel = new QuestionListViewModel(this._navigationStore, _quiz);
         }
     }
 }

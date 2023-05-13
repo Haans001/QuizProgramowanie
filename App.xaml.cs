@@ -29,8 +29,9 @@ namespace QuizPOG
             context.Database.EnsureCreated();
 
             DatabaseLocator.QuizDBContext = context;
+            context.Database.Migrate();
 
-            navigationStore.CurrentViewModel = new QuestionListViewModel(navigationStore);
+            navigationStore.CurrentViewModel = new QuizListViewModel(navigationStore);
 
             MainWindow window = new MainWindow()
             {

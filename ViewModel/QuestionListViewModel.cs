@@ -3,6 +3,7 @@ using QuizGenerator.Core.Helpers.Commands;
 using QuizPOG.Model;
 using QuizPOG.Store;
 using QuizProgramowanie.Database;
+using QuizProgramowanie.Database.Models;
 using QuizProgramowanie.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -22,20 +23,26 @@ namespace QuizPOG.ViewModel
         private Window AddQuestionWindow;
         public ObservableCollection<QuestionListItemViewModel> Questions { get; set; }
 
+        private readonly Quiz _quiz;
+
         private readonly NavigationStore _navigationStore;
 
         public ICommand OpenAddQuestionWindowCommand { get; set; }
         public ICommand NavigateToQuizListCommand { get; set; }
 
-        public QuestionListViewModel(NavigationStore navigationStore)
+        public QuestionListViewModel(NavigationStore navigationStore, Quiz quiz)
         {
 
             Questions = new ObservableCollection<QuestionListItemViewModel>();
 
+            this._quiz = quiz;
 
-            foreach (Question q in QuestionsRepository.GetQuestions())
+            if(quiz.Questions != null)
             {
-                Questions.Add(new QuestionListItemViewModel(q, this));
+                foreach (Question q in quiz.Questions)
+                {
+                    Questions.Add(new QuestionListItemViewModel(q, this));
+                }
             }
 
             this._navigationStore = navigationStore;
@@ -60,7 +67,7 @@ namespace QuizPOG.ViewModel
 
         public void AddQuestion(Question q)
         {
-            QuestionsRepository.AddQuestion(q);
+            QuestionsRepository.AddQuestion(q, _quiz);
             this.Questions.Add(new QuestionListItemViewModel(q, this));
             AddQuestionWindow.Close();
         }

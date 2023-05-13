@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using QuizProgramowanie.Database.Repositories;
+using QuizProgramowanie.Database.Models;
+using QuizProgramowanie.Database;
 
 namespace QuizPOG.ViewModel
 {
@@ -26,6 +29,11 @@ namespace QuizPOG.ViewModel
         {
             _navigationStore = navigationStore;
 
+            foreach (Quiz q in QuizzesRepository.GetAllQuizzes())
+            {
+                Quizes.Add(new QuizListItemViewModel(q, navigationStore));
+            }
+
             OpenAddQuizWindowCommand = new RelayCommand(OpenAddQuestionWindow);
         }
 
@@ -41,7 +49,13 @@ namespace QuizPOG.ViewModel
 
         public void AddQuiz(string q)
         {
-            Quizes.Add(new QuizListItemViewModel(q, _navigationStore));
+            Quiz quiz = new Quiz()
+            {
+                Title = q,
+                Questions = new List<Question>()
+            };
+            Quizes.Add(new QuizListItemViewModel(quiz, _navigationStore));
+            QuizzesRepository.AddQuiz(quiz);
             AddQuizWindow.Close();
         }
     }

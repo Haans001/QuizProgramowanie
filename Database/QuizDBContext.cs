@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuizPOG.Model;
+using QuizProgramowanie.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,13 @@ namespace QuizProgramowanie.Database
     {
 
         public DbSet<Question> Questions { get; set; }
-        public QuizDBContext() : base(new DbContextOptionsBuilder().UseSqlite("Data Source=QuizProg.db").Options)
-        {
-        }
+        public DbSet<Quiz> Quizzes { get; set; }
+
+        public DbSet<Answer> Answers { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
+            optionsBuilder.UseLazyLoadingProxies().UseSqlite("Data Source=QuizProg.db");
+
 
     }
 }
