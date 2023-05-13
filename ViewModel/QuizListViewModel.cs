@@ -20,14 +20,13 @@ namespace QuizPOG.ViewModel
         private readonly NavigationStore _navigationStore;
 
         public ICommand OpenAddQuizWindowCommand { get; set; }
-        public ICommand NavigateToQuestListCommand { get; set; }
+        
 
         public QuizListViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
 
             OpenAddQuizWindowCommand = new RelayCommand(OpenAddQuestionWindow);
-            NavigateToQuestListCommand = new RelayCommand(NavigateToQuestList);
         }
 
         private void OpenAddQuestionWindow()
@@ -40,14 +39,9 @@ namespace QuizPOG.ViewModel
             AddQuizWindow.ShowDialog();
         }
 
-        private void NavigateToQuestList()
-        {
-            _navigationStore.CurrentViewModel = new QuestionListViewModel(_navigationStore);
-        }
-
         public void AddQuiz(string q)
         {
-            Quizes.Add(new QuizListItemViewModel(q));
+            Quizes.Add(new QuizListItemViewModel(q, _navigationStore));
             AddQuizWindow.Close();
         }
     }
