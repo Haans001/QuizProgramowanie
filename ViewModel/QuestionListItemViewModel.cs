@@ -27,7 +27,7 @@ namespace QuizPOG.ViewModel
         public QuestionListItemViewModel(Question q, QuestionListViewModel questionListViewModel) { 
             this.Question = q;
             _questionListViewModel = questionListViewModel;
-            this.EditCommand = new RelayCommand(OpenEditQuestionWindow);
+            this.EditCommand = new RelayCommand((p) => { OpenEditQuestionWindow(); });
         }
 
         private void OpenEditQuestionWindow()
