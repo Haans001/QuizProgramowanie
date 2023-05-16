@@ -20,7 +20,8 @@
             <TextBox 
                 FontSize="20"
                 Margin="5"
-                Text="{Binding Title}"/>
+                Text="{Binding Title, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
             
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -33,8 +34,8 @@
                     Content="Wyczyść"
                     FontSize="20"
                     Margin="5"/>
-                <Button 
-                    x:Name="btnAdd" 
+                <Button
+                    x:Name="btnAdd"
                     Grid.Column="1"
                     Content="Dodaj"
                     FontSize="20"

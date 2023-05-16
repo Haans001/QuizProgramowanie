@@ -12,11 +12,11 @@ namespace QuizProgramowanie.ViewModel
 {
     public class QuestionFormBaseViewModel : BaseViewModel
     {
-        private string quest;
-        private string ans1;
-        private string ans2;
-        private string ans3;
-        private string ans4;
+        private string quest ="";
+        private string ans1 = "";
+        private string ans2 = "";
+        private string ans3 = "";
+        private string ans4 = "";
         private bool chk1;
         private bool chk2;
         private bool chk3;

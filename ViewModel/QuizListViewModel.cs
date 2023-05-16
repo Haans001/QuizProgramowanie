@@ -34,7 +34,7 @@ namespace QuizPOG.ViewModel
                 Quizes.Add(new QuizListItemViewModel(q, navigationStore));
             }
 
-            OpenAddQuizWindowCommand = new RelayCommand(OpenAddQuestionWindow);
+            OpenAddQuizWindowCommand = new RelayCommand((p) => OpenAddQuestionWindow());
         }
 
         private void OpenAddQuestionWindow()

@@ -20,7 +20,8 @@
             <TextBox 
                 FontSize="20"
                 Margin="5"
-                Text="{Binding Quest}"/>
+                Text="{Binding Quest, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
             <Label 
                 Content="Odpowiedzi:"
                 FontSize="20"/>
@@ -39,52 +40,60 @@
                     x:Name="cBox1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    IsChecked="{Binding Chk1}"/>
+                    IsChecked="{Binding Chk1, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
                 <CheckBox 
                     x:Name="cBox2" 
                     Grid.Row="1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    IsChecked="{Binding Chk2}"/>
+                    IsChecked="{Binding Chk2, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
                 <CheckBox 
                     x:Name="cBox3" 
                     Grid.Row="2"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    IsChecked="{Binding Chk3}"/>
+                    IsChecked="{Binding Chk3, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
                 <CheckBox 
                     x:Name="cBox4" Grid.Row="3"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    IsChecked="{Binding Chk4}"/>
+                    IsChecked="{Binding Chk4, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
 
                 <TextBox 
                     x:Name="tBox1" 
                     Grid.Column="1"
                     FontSize="20"
                     Margin="5"
-                    Text="{Binding Ans1}"/>
+                    Text="{Binding Ans1, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
                 <TextBox 
                     x:Name="tBox2" 
                     Grid.Column="1" 
                     Grid.Row="1"
                     FontSize="20"
                     Margin="5"
-                    Text="{Binding Ans2}"/>
+                    Text="{Binding Ans2, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
                 <TextBox 
                     x:Name="tBox3" 
                     Grid.Column="1" 
                     Grid.Row="2"
                     FontSize="20"
                     Margin="5"
-                    Text="{Binding Ans3}"/>
+                    Text="{Binding Ans3, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
                 <TextBox 
                     x:Name="tBox4" 
                     Grid.Column="1" 
                     Grid.Row="3"
                     FontSize="20"
                     Margin="5"
-                    Text="{Binding Ans4}"/>
+                    Text="{Binding Ans4, UpdateSourceTrigger=PropertyChanged,
+                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
             </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>

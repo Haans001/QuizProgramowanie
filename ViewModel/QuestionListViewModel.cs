@@ -47,8 +47,8 @@ namespace QuizPOG.ViewModel
 
             this._navigationStore = navigationStore;
 
-            this.OpenAddQuestionWindowCommand = new RelayCommand(OpenAddQuestionWindow);
-            this.NavigateToQuizListCommand = new RelayCommand(NavigateToQuizList);
+            this.OpenAddQuestionWindowCommand = new RelayCommand((p)=> { OpenAddQuestionWindow(); });
+            this.NavigateToQuizListCommand = new RelayCommand((p) => { NavigateToQuizList(); });
         }
 
         private void OpenAddQuestionWindow()

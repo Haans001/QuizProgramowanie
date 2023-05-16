@@ -20,15 +20,31 @@ namespace QuizPOG.ViewModel
         public QuizFormViewModel(QuizListViewModel quizListViewModel)
         {
             _quizListViewModel = quizListViewModel;
-            SubmitQuizCommand = new RelayCommand(Submit);
+            SubmitQuizCommand = new RelayCommand((p) => { Submit(); }, p => CanSubmit());
         }
 
-        public string Title { get; set; }
+        private string title = "";
+        public string Title 
+        {
+            get { return title; }
+            set
+            {
+                title = value;
+                OnPropertyChanged(nameof(Title));
+            }
+        }
 
         private void Submit()
         {
             string title = Title;
             _quizListViewModel.AddQuiz(title);
+        }
+
+        private bool CanSubmit()
+        {
+            if (this.Title == "") return false;
+
+            return true;
         }
     }
 }

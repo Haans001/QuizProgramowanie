@@ -23,8 +23,7 @@ namespace QuizPOG.ViewModel
         {
             this._quiz = quiz;
             _navigationStore = navigationStore;
-            NavigateToQuestListCommand = new RelayCommand(NavigateToQuestList);
-
+            NavigateToQuestListCommand = new RelayCommand((p) => { NavigateToQuestList(); });
         }
 
         private void NavigateToQuestList()
