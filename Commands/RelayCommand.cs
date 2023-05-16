@@ -14,20 +14,6 @@ namespace QuizGenerator.Core.Helpers.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        //public RelayCommand(Action action, Predicate<object> predicate)
-        //{
-        //    mAction = action;
-        //}
-
-        //public bool CanExecute(object parameter)
-        //{
-        //    return true; //zawsze da sie odpalic dana funkcje
-        //}
-
-        //public void Execute(object parameter)
-        //{
-        //    mAction();
-        //}
 
         private Action<object> execute;
         private Predicate<object> canExecute;
