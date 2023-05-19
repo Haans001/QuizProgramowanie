@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace QuizPOG.ViewModel
 {
     public class MainViewModel: BaseViewModel

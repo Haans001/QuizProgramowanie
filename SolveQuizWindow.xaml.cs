@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuizPOG.Components
+namespace QuizPOG
 {
     /// <summary>
-    /// Logika interakcji dla klasy QuizForm.xaml
+    /// Logika interakcji dla klasy SolveQuizWindow.xaml
     /// </summary>
-    public partial class QuizForm : UserControl
+    public partial class SolveQuizWindow : Window
     {
-        public QuizForm()
+        public SolveQuizWindow()
         {
             InitializeComponent();
         }

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace QuizPOG
 {
     /// <summary>
-    /// Logika interakcji dla klasy AddQuizWindow.xaml
+    /// Logika interakcji dla klasy QuizFormWindow.xaml
     /// </summary>
-    public partial class AddQuizWindow : Window
+    public partial class QuizFormWindow : Window
     {
-        public AddQuizWindow()
+        public QuizFormWindow()
         {
             InitializeComponent();
         }

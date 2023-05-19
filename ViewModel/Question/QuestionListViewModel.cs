@@ -3,7 +3,6 @@ using QuizGenerator.Core.Helpers.Commands;
 using QuizPOG.Model;
 using QuizPOG.Store;
 using QuizProgramowanie.Database;
-using QuizProgramowanie.Database.Models;
 using QuizProgramowanie.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -39,7 +38,8 @@ namespace QuizPOG.ViewModel
 
             if(quiz.Questions != null)
             {
-                foreach (Question q in quiz.Questions)
+                //foreach (Question q in quiz.Questions)
+                foreach (Question q in QuestionsRepository.GetAllQuestions(_quiz))
                 {
                     Questions.Add(new QuestionListItemViewModel(q, this));
                 }
