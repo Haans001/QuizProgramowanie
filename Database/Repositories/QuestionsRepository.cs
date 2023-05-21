@@ -38,6 +38,19 @@ namespace QuizProgramowanie.Database
 
             DatabaseLocator.QuizDBContext.SaveChanges();
             }
-        }
 
+        public static void DeleteQuestion(Question question)
+        {
+            var questionToRemove = DatabaseLocator.QuizDBContext.Questions.Include(q => q.Answers)
+                                              .FirstOrDefault(q => q.Id == question.Id);
+
+            if (questionToRemove != null)
+            {
+                DatabaseLocator.QuizDBContext.Answers.RemoveRange(questionToRemove.Answers);
+                DatabaseLocator.QuizDBContext.Questions.Remove(questionToRemove);
+                DatabaseLocator.QuizDBContext.SaveChanges();
+            }
+        }
+    
+    }
     }
