@@ -1,4 +1,5 @@
-﻿using QuizPOG.Model;
+﻿using EntityFrameworkCore.EncryptColumn.Attribute;
+using QuizPOG.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace QuizPOG.Model
     {
         public Guid Id { get; set; }
 
+        [EncryptColumn]
         public string Title { get; set; }
 
         public virtual List<Question> Questions { get; set; }

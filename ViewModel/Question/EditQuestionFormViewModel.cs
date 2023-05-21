@@ -33,6 +33,9 @@ namespace QuizProgramowanie.ViewModel
 
             this.SubmitFormCommand = new RelayCommand((p) => { Submit(); }, p => CanSubmit());
             this.ClearCommand = new RelayCommand((p) => { Clear(); });
+
+            this.FormTitle = "Edytuj Pytanie";
+
         }
 
         private void Submit()

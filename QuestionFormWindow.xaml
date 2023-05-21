@@ -17,7 +17,7 @@
                 HorizontalAlignment="Right"
                 Margin="5">
                 <TextBlock.ToolTip>
-                    <ToolTip>
+                    <ToolTip >
                         <StackPanel>
                             <TextBlock Text="PAMIĘTAJ" FontWeight="Bold"/>
                             <TextBlock Text="Żadne pole nie może być puste."/>
@@ -28,7 +28,7 @@
             </TextBlock>
             
             <TextBlock 
-                Text="Dodaj Pytanie"
+                Text="{Binding FormTitle}"
                 FontSize="25"
                 Margin="5"
                 HorizontalAlignment="Center"/>

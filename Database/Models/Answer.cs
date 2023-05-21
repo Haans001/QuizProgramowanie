@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityFrameworkCore.EncryptColumn.Attribute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,8 @@ namespace QuizPOG.Model
 
         public Guid Id { get; set; }
 
+        [EncryptColumn]
         public string Content { get; set; }
-
         public bool IsCorrect { get; set; }
     }
 }

@@ -22,6 +22,19 @@ namespace QuizProgramowanie.ViewModel
         private bool chk3;
         private bool chk4;
 
+        private string _formTitle;
+
+        public string FormTitle
+        {
+            get { return _formTitle; }
+
+            set 
+            { 
+                _formTitle = value;
+                OnPropertyChanged(nameof(FormTitle));
+            }
+        }
+
         public ICommand SubmitFormCommand { get; set; }
         public ICommand ClearCommand { get; set; }
 

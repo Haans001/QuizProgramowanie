@@ -22,6 +22,8 @@ namespace QuizPOG.ViewModel
             this._questionListViewMode = questionListViewMode;
             this.SubmitFormCommand = new RelayCommand((p)=> { Submit(); }, p=> CanSubmit());
             this.ClearCommand = new RelayCommand((p)=> { Clear(); });
+
+            this.FormTitle = "Dodaj Pytanie";
         }
 
         private void Submit()
