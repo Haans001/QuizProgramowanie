@@ -18,22 +18,36 @@
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock FontSize="24" Grid.Column="0" Text="Lista quizów"  />
-                <Button Grid.Column="1" Content="Dodaj Quiz" VerticalAlignment="Center" Command="{Binding OpenAddQuizWindowCommand}"  />
+                <Button 
+                    Grid.Column="1" 
+                    Content="Dodaj Quiz" 
+                    VerticalAlignment="Center" 
+                    Command="{Binding OpenAddQuizWindowCommand}"/>
             </Grid>
             <ListView Grid.Row="1" ItemsSource="{Binding Quizes}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="{Binding QuizTitle}" />
-                        <Button Grid.Column="1" Content="Edytuj pytania" Margin="30 0 0 0" Command="{Binding NavigateToQuestListCommand}"/>
-                        <Button Grid.Column="2" Content="Rozwiąż"  Margin="30 0 0 0"/>
-                    </Grid>
+                            <TextBlock 
+                                Grid.Column="0" 
+                                Text="{Binding Title}" />
+                            <Button 
+                                Grid.Column="1" 
+                                Content="Edytuj pytania" 
+                                Margin="30 0 0 0" 
+                                Command="{Binding NavigateToQuestListCommand}"/>
+                            <Button 
+                                Grid.Column="2" 
+                                Content="Rozwiązuj Quiz"
+                                Margin="30 0 0 0" 
+                                Command="{Binding OpenSolveQuizWindowCommand}"/>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

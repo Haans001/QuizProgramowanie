@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using QuizProgramowanie.Database.Repositories;
-using QuizProgramowanie.Database.Models;
 using QuizProgramowanie.Database;
+using QuizProgramowanie;
 
 namespace QuizPOG.ViewModel
 {
     public class QuizListViewModel : BaseViewModel
     {
         private Window AddQuizWindow;
+        
         public ObservableCollection<QuizListItemViewModel> Quizes { get; set; } = new ObservableCollection<QuizListItemViewModel>();
 
         private readonly NavigationStore _navigationStore;
 
         public ICommand OpenAddQuizWindowCommand { get; set; }
         
-
         public QuizListViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
@@ -35,13 +35,14 @@ namespace QuizPOG.ViewModel
             }
 
             OpenAddQuizWindowCommand = new RelayCommand((p) => OpenAddQuestionWindow());
+            
         }
 
         private void OpenAddQuestionWindow()
         {
-            AddQuizWindow = new AddQuizWindow()
+            AddQuizWindow = new QuizFormWindow()
             {
-                DataContext = new QuizFormViewModel(this)
+                DataContext = new AddQuizFormViewModel(this)
             };
 
             AddQuizWindow.ShowDialog();

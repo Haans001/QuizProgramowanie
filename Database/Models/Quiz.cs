@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizProgramowanie.Database.Models
+namespace QuizPOG.Model
 {
     public class Quiz
     {

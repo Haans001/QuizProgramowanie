@@ -5,9 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizPOG" xmlns:components="clr-namespace:QuizPOG.Components"
         mc:Ignorable="d"
-        Height="450" Width="450">
+        Height="450" Width="450"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
+            <TextBlock
+                Grid.Column="1"
+                Text="?"
+                FontSize="20"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Margin="5">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock Text="PAMIĘTAJ" FontWeight="Bold"/>
+                            <TextBlock Text="Żadne pole nie może być puste."/>
+                            <TextBlock Text="Przynajmniej jedna odpowiedź musi być zaznaczona jako poprawna."/>
+                        </StackPanel>
+                    </ToolTip>
+                </TextBlock.ToolTip>
+            </TextBlock>
+            
             <TextBlock 
                 Text="Dodaj Pytanie"
                 FontSize="25"
@@ -20,7 +39,7 @@
             <TextBox 
                 FontSize="20"
                 Margin="5"
-                Text="{Binding Quest, UpdateSourceTrigger=PropertyChanged,
+                Text="{Binding Quest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
                         ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
             <Label 
                 Content="Odpowiedzi:"
@@ -99,17 +118,17 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Button 
                     x:Name="btnClear"
                     Content="Wyczyść"
                     FontSize="20"
-                    Margin="5"/>
+                    Margin="5"
+                    Command="{Binding ClearCommand}"/>
                 <Button 
                     x:Name="btnAdd" 
-                    Grid.Column="2"
+                    Grid.Column="1"
                     Content="Zatwierdź"
                     FontSize="20"
                     Margin="5"

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuizPOG.Components
+namespace QuizProgramowanie.View
 {
     /// <summary>
-    /// Logika interakcji dla klasy QuizForm.xaml
+    /// Logika interakcji dla klasy SolvingView.xaml
     /// </summary>
-    public partial class QuizForm : UserControl
+    public partial class SolvingView : UserControl
     {
-        public QuizForm()
+        public SolvingView()
         {
             InitializeComponent();
         }

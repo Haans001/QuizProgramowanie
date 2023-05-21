@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuizPOG.Model;
-using QuizProgramowanie.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,6 +19,11 @@ namespace QuizProgramowanie.Database
             DatabaseLocator.QuizDBContext.SaveChanges();
         }
 
+        public static List<Question> GetAllQuestions(Quiz quiz)
+        {
+            return quiz.Questions;
+        }
+
         public static void UpdateQuestion(Question question)
         {
 
@@ -29,6 +33,7 @@ namespace QuizProgramowanie.Database
             {
                 DatabaseLocator.QuizDBContext.Answers.RemoveRange(entity.Answers);
                 entity.Answers = question.Answers;
+                entity.Content = question.Content;
             }
 
             DatabaseLocator.QuizDBContext.SaveChanges();

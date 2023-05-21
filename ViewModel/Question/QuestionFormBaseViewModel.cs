@@ -23,7 +23,7 @@ namespace QuizProgramowanie.ViewModel
         private bool chk4;
 
         public ICommand SubmitFormCommand { get; set; }
-
+        public ICommand ClearCommand { get; set; }
 
         public string Quest
         {

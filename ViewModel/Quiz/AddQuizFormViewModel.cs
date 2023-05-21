@@ -11,27 +11,15 @@ using System.Windows.Input;
 
 namespace QuizPOG.ViewModel
 {
-    public class QuizFormViewModel :BaseViewModel
+    public class AddQuizFormViewModel : QuizFormBaseViewModel
     {
         private readonly QuizListViewModel _quizListViewModel;
 
-        public ICommand SubmitQuizCommand { get; set; }
-
-        public QuizFormViewModel(QuizListViewModel quizListViewModel)
+        public AddQuizFormViewModel(QuizListViewModel quizListViewModel)
         {
             _quizListViewModel = quizListViewModel;
             SubmitQuizCommand = new RelayCommand((p) => { Submit(); }, p => CanSubmit());
-        }
-
-        private string title = "";
-        public string Title 
-        {
-            get { return title; }
-            set
-            {
-                title = value;
-                OnPropertyChanged(nameof(Title));
-            }
+            ClearCommand = new RelayCommand((p) => { Clear(); });
         }
 
         private void Submit()
@@ -42,9 +30,15 @@ namespace QuizPOG.ViewModel
 
         private bool CanSubmit()
         {
-            if (this.Title == "") return false;
+            if (String.IsNullOrEmpty(Title))
+                return false;
 
             return true;
+        }
+
+        private void Clear()
+        {
+            this.Title = String.Empty;
         }
     }
 }

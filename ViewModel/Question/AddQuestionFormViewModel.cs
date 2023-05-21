@@ -21,6 +21,7 @@ namespace QuizPOG.ViewModel
         {
             this._questionListViewMode = questionListViewMode;
             this.SubmitFormCommand = new RelayCommand((p)=> { Submit(); }, p=> CanSubmit());
+            this.ClearCommand = new RelayCommand((p)=> { Clear(); });
         }
 
         private void Submit()
@@ -30,13 +31,29 @@ namespace QuizPOG.ViewModel
 
         private bool CanSubmit()
         {
-            if (this.Quest == "" || this.Ans1 == "" || this.Ans2 == ""
-                || this.Ans3 == "" || this.Ans4 == "") return false;
+            if(String.IsNullOrEmpty(Quest) || String.IsNullOrEmpty(Ans1) || 
+                String.IsNullOrEmpty(Ans2) || String.IsNullOrEmpty(Ans3) ||
+                String.IsNullOrEmpty(Ans4))
+                return false;
 
-            if(this.Chk1 == false && this.Chk2 == false && this.Chk3 == false
-                && this.Chk4 == false) return false;
+            if (Chk1 == false && Chk2 == false && Chk3 == false
+                && Chk4 == false) 
+                return false;
 
             return true;
+        }
+
+        private void Clear()
+        {
+            Quest = String.Empty;
+            Ans1 = String.Empty;
+            Ans2 = String.Empty;
+            Ans3 = String.Empty;
+            Ans4 = String.Empty;
+            Chk1 = false;
+            Chk2 = false;
+            Chk3 = false;
+            Chk4 = false;
         }
     }
 }
