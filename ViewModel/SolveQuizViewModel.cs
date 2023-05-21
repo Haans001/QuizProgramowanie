@@ -5,8 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace QuizPOG.ViewModel
 {
@@ -16,6 +17,21 @@ namespace QuizPOG.ViewModel
         private readonly Quiz _quiz;
         private int _questIter;
         private int _points;
+
+        private string _timeCount = "Czas: 00:00";
+        private int _seconds = 0;
+
+        private Timer _timer;
+
+        public string TimeCount
+        {
+            get { return _timeCount; }
+            set
+            {
+                _timeCount = "Czas: " + value;
+                OnPropertyChanged(nameof(TimeCount));
+            }
+        }
 
         public SolveQuizViewModel(QuizListItemViewModel quizListItemViewModel,Quiz quiz, int questIter)
         {
@@ -36,6 +52,19 @@ namespace QuizPOG.ViewModel
                 ButtonContent = "Zakończ Quiz";
 
             SolverCommand = new RelayCommand((p) => { Solver(); });
+
+
+            _timer = new Timer(1000);
+            _timer.Elapsed += handleTimeCountUpdate;
+            _timer.Start();
+        }
+
+        public void handleTimeCountUpdate(object sender, ElapsedEventArgs e)
+        {
+            _seconds++;
+            TimeSpan time = TimeSpan.FromSeconds(_seconds);
+            TimeCount = time.ToString("mm\\:ss");
+
         }
 
         private void Solver()
@@ -60,7 +89,11 @@ namespace QuizPOG.ViewModel
             }
             else
             {
-                _quizListItemViewModel.EndQuiz(_points);
+
+                _timer.Stop();
+                _timer.Dispose();
+                _quizListItemViewModel.EndQuiz(_points, _timeCount);
+
             }
         }
     }

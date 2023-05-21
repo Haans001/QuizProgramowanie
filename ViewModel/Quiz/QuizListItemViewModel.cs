@@ -58,9 +58,9 @@ namespace QuizPOG.ViewModel
             return true;
         }
 
-        public void EndQuiz(int points)
+        public void EndQuiz(int points, string time)
         {
-            MessageBox.Show("Twoj wynik to: " + points.ToString() + "/" + Quiz.Questions.Count.ToString());
+            MessageBox.Show("Twoj wynik to: " + points.ToString() + "/" + Quiz.Questions.Count.ToString() + ". " + time);
             SolveQuizWindow.Close();
         }
     }
