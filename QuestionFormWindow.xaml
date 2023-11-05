@@ -3,137 +3,177 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:QuizPOG" xmlns:components="clr-namespace:QuizPOG.Components"
+        xmlns:local="clr-namespace:QuizPOG"
         mc:Ignorable="d"
-        Height="450" Width="450"
-        WindowStartupLocation="CenterScreen">
-    <Grid>
-        <StackPanel>
-            <TextBlock
-                Grid.Column="1"
-                Text="?"
-                FontSize="20"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Right"
-                Margin="5">
-                <TextBlock.ToolTip>
-                    <ToolTip >
-                        <StackPanel>
-                            <TextBlock Text="PAMIĘTAJ" FontWeight="Bold"/>
-                            <TextBlock Text="Żadne pole nie może być puste."/>
-                            <TextBlock Text="Przynajmniej jedna odpowiedź musi być zaznaczona jako poprawna."/>
-                        </StackPanel>
-                    </ToolTip>
-                </TextBlock.ToolTip>
-            </TextBlock>
-            
-            <TextBlock 
-                Text="{Binding FormTitle}"
-                FontSize="25"
-                Margin="5"
-                HorizontalAlignment="Center"/>
-            <Label 
-                Content="Treść pytania:"
-                FontSize="20"
-                />
-            <TextBox 
-                FontSize="20"
-                Margin="5"
-                Text="{Binding Quest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
-            <Label 
-                Content="Odpowiedzi:"
-                FontSize="20"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="6*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <CheckBox 
-                    x:Name="cBox1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    IsChecked="{Binding Chk1, UpdateSourceTrigger=PropertyChanged,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
-                <CheckBox 
-                    x:Name="cBox2" 
-                    Grid.Row="1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    IsChecked="{Binding Chk2, UpdateSourceTrigger=PropertyChanged,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
-                <CheckBox 
-                    x:Name="cBox3" 
-                    Grid.Row="2"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    IsChecked="{Binding Chk3, UpdateSourceTrigger=PropertyChanged,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
-                <CheckBox 
-                    x:Name="cBox4" Grid.Row="3"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    IsChecked="{Binding Chk4, UpdateSourceTrigger=PropertyChanged,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+        Width="450"
+        MaxHeight="450"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="Height">
 
-                <TextBox 
-                    x:Name="tBox1" 
-                    Grid.Column="1"
-                    FontSize="20"
-                    Margin="5"
-                    Text="{Binding Ans1, UpdateSourceTrigger=PropertyChanged,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
-                <TextBox 
-                    x:Name="tBox2" 
-                    Grid.Column="1" 
-                    Grid.Row="1"
-                    FontSize="20"
-                    Margin="5"
-                    Text="{Binding Ans2, UpdateSourceTrigger=PropertyChanged,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
-                <TextBox 
-                    x:Name="tBox3" 
-                    Grid.Column="1" 
-                    Grid.Row="2"
-                    FontSize="20"
-                    Margin="5"
-                    Text="{Binding Ans3, UpdateSourceTrigger=PropertyChanged,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
-                <TextBox 
-                    x:Name="tBox4" 
-                    Grid.Column="1" 
-                    Grid.Row="3"
-                    FontSize="20"
-                    Margin="5"
-                    Text="{Binding Ans4, UpdateSourceTrigger=PropertyChanged,
-                        ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+    <Border 
+        Background="#272537" 
+        CornerRadius="20" 
+        BorderThickness="0.5"
+        BorderBrush="White">
+        <Grid Margin="10">
+            <StackPanel>
+                <StackPanel 
+                    Orientation="Horizontal"
+                    FlowDirection="RightToLeft">
+                    <Button 
+                        x:Name="CloseApp"
+                        Style="{StaticResource ExitApp}"
+                        Click="CloseWindow_Click" />
 
-                <Button 
-                    x:Name="btnClear"
-                    Content="Wyczyść"
+                    <TextBlock
+                        Grid.Column="1"
+                        Text="?"
+                        FontSize="25"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Foreground="White"
+                        FontWeight="Bold">
+                        <TextBlock.ToolTip>
+                            <ToolTip>
+                                <StackPanel
+                                    Orientation="Vertical"
+                                    FlowDirection="LeftToRight">
+                                    <TextBlock Text="PAMIĘTAJ" FontWeight="Bold"/>
+                                    <TextBlock Text="Żadne pole nie może być puste."/>
+                                    <TextBlock Text="Przynajmniej jedna odpowiedź musi być zaznaczona jako poprawna."/>
+                                </StackPanel>
+                            </ToolTip>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                </StackPanel>
+
+                <TextBlock 
+                    Text="{Binding FormTitle}"
+                    FontSize="24"
+                    HorizontalAlignment="Center"
+                    Foreground="White"
+                    FontWeight="Bold"/>
+                <Label 
+                    Content="Treść pytania:"
                     FontSize="20"
-                    Margin="5"
-                    Command="{Binding ClearCommand}"/>
-                <Button 
-                    x:Name="btnAdd" 
-                    Grid.Column="1"
-                    Content="Zatwierdź"
+                    Foreground="White"
+                    FontWeight="Bold"/>
+                <TextBox
+                    Style="{StaticResource TextBoxStyle}"
+                    Text="{Binding Quest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                <Label 
+                    Content="Odpowiedzi:"
                     FontSize="20"
-                    Margin="5"
-                    Command="{Binding SubmitFormCommand}"/>
-            </Grid>
-        </StackPanel>
-    </Grid>
+                    Foreground="White"
+                    FontWeight="Bold"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="6*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <CheckBox 
+                        x:Name="cBox1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource CheckBoxStyle}"
+                        IsChecked="{Binding Chk1, UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                    
+                    <CheckBox 
+                        x:Name="cBox2" 
+                        Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource CheckBoxStyle}"
+                        IsChecked="{Binding Chk2, UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                    
+                    <CheckBox 
+                        x:Name="cBox3" 
+                        Grid.Row="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource CheckBoxStyle}"
+                        IsChecked="{Binding Chk3, UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                    
+                    <CheckBox 
+                        x:Name="cBox4" Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource CheckBoxStyle}"
+                        IsChecked="{Binding Chk4, UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+
+                    <TextBox 
+                        x:Name="tBox1" 
+                        Grid.Column="1"
+                        Style="{StaticResource TextBoxStyle}"
+                        Text="{Binding Ans1, UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                    
+                    <TextBox 
+                        x:Name="tBox2" 
+                        Grid.Column="1" 
+                        Grid.Row="1"
+                        Style="{StaticResource TextBoxStyle}"
+                        Text="{Binding Ans2, UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                    
+                    <TextBox 
+                        x:Name="tBox3" 
+                        Grid.Column="1" 
+                        Grid.Row="2"
+                        Style="{StaticResource TextBoxStyle}"
+                        Text="{Binding Ans3, UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                    
+                    <TextBox 
+                        x:Name="tBox4" 
+                        Grid.Column="1" 
+                        Grid.Row="3"
+                        Style="{StaticResource TextBoxStyle}"
+                        Text="{Binding Ans4, UpdateSourceTrigger=PropertyChanged,
+                            ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+                </Grid>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button 
+                        x:Name="btnClear"
+                        Content="Wyczyść"
+                        FontSize="20"
+                        Background="Teal"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding ClearCommand}"/>
+                    
+                    <Button 
+                        x:Name="btnAdd" 
+                        Grid.Column="1"
+                        Content="Zatwierdź"
+                        FontSize="20"
+                        Background="Teal"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding SubmitFormCommand}"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Border>
+    
 </Window>
