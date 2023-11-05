@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:QuizPOG.View"
+             xmlns:local="clr-namespace:QuizPOG.View" xmlns:viewmodel="clr-namespace:QuizPOG.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:QuestionListViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignWidth="600">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -18,23 +18,71 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            <Button Margin="0 0 25 0" Grid.Column="0" Content="Wróć do quizów" Command="{Binding NavigateToQuizListCommand}" />
-            <TextBlock FontSize="24" Grid.Column="1" Text="Lista pytań"  />
-            <Button Grid.Column="2" Content="Dodaj pytanie" VerticalAlignment="Center" Command="{Binding OpenAddQuestionWindowCommand}"  />
+            
+            <Button
+                Grid.Column="0" 
+                Content="Wróć do quizów"
+                FontSize="12"
+                Background="Teal"
+                Style="{StaticResource ButtonStyle}"
+                Command="{Binding NavigateToQuizListCommand}" />
+            
+            <TextBlock 
+                Grid.Column="1" 
+                Text="Lista pytań"
+                VerticalAlignment="Center"
+                FontSize="24"
+                Foreground="White"
+                FontWeight="Bold" />
+            
+            <Button 
+                Grid.Column="2" 
+                Content="Dodaj pytanie" 
+                VerticalAlignment="Center"
+                FontSize="12"
+                Background="Teal"
+                Style="{StaticResource ButtonStyle}"
+                Command="{Binding OpenAddQuestionWindowCommand}"  />
         </Grid>
-        <ListView Grid.Row="1" ItemsSource="{Binding Questions}">
+        
+        <ListView 
+            Grid.Row="1" 
+            Background="Transparent"
+            BorderThickness="0"
+            ItemsSource="{Binding Questions}" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="400" />
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="{Binding Content}" />
-                        <Button Grid.Column="1" Content="Edytuj" Command="{Binding EditCommand}" Margin="30 0 0 0" />
-                        <Button Grid.Column="2" Content="Usuń" Command="{Binding DeleteCommand}" Margin="30 0 0 0" />
+                        <TextBlock 
+                            Grid.Column="0" 
+                            Text="{Binding Content}" 
+                            VerticalAlignment="Center"
+                            Margin="5 0 0 0"
+                            FontSize="15"
+                            FontWeight="Bold"
+                            Foreground="White"/>
+                        
+                        <Button 
+                            Grid.Column="1" 
+                            Content="Edytuj" 
+                            FontSize="12"
+                            Background="Teal"
+                            Style="{StaticResource ButtonStyle}"
+                            Command="{Binding EditCommand}" />
+                        
+                        <Button 
+                            Grid.Column="2" 
+                            Content="Usuń"
+                            FontSize="12"
+                            Background="Teal"
+                            Style="{StaticResource ButtonStyle}"
+                            Command="{Binding DeleteCommand}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

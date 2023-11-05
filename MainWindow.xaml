@@ -6,19 +6,44 @@
         xmlns:local="clr-namespace:QuizPOG" xmlns:view="clr-namespace:QuizPOG.View"
         xmlns:viewmodels="clr-namespace:QuizPOG.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
-    <Grid>
-        <ContentControl Content="{Binding CurrentViewModel}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type viewmodels:QuestionListViewModel}">
-                    <view:QuestionsListView />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:QuizListViewModel}">
-                    <view:QuizesListView />
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
+        Title="MainWindow"
+        Width="600"
+        MaxHeight="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="Height">
 
-    </Grid>
+    <Border 
+        Background="#272537" 
+        CornerRadius="20"
+        BorderThickness="0.5"
+        BorderBrush="White">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Button 
+                x:Name="CloseApp"
+                Style="{StaticResource ExitApp}"
+                Click="CloseWindow_Click" />
+
+            <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewmodels:QuestionListViewModel}">
+                        <view:QuestionsListView />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type viewmodels:QuizListViewModel}">
+                        <view:QuizesListView />
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+
+        </Grid>
+    </Border>
+    
 </Window>

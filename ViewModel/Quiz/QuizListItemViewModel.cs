@@ -60,7 +60,9 @@ namespace QuizPOG.ViewModel
 
         public void EndQuiz(int points, string time)
         {
-            MessageBox.Show("Twoj wynik to: " + points.ToString() + "/" + Quiz.Questions.Count.ToString() + ". " + time);
+            MessageBox.Show("Twój wynik to: " + points.ToString() + "/" + Quiz.Questions.Count.ToString() + ". " + time, 
+                "Wynik Quizu", MessageBoxButton.OK, MessageBoxImage.Information);
+
             SolveQuizWindow.Close();
         }
     }

@@ -3,49 +3,78 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:QuizPOG.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:local="clr-namespace:QuizPOG.View" 
+             xmlns:viewmodel="clr-namespace:QuizPOG.ViewModel" 
+             d:DataContext="{d:DesignInstance Type=viewmodel:QuizListViewModel}"
+             mc:Ignorable="d"
+             d:DesignWidth="600">
+    
         <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="0 0 0 10">
+        
+        <Grid Grid.Row="0" Margin="0 0 0 10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock FontSize="24" Grid.Column="0" Text="Lista quizów"  />
+                
+                <TextBlock
+                    Text="Lista quizów"
+                    VerticalAlignment="Center"
+                    FontSize="24" 
+                    FontWeight="Bold"
+                    Foreground="White"/>
+                
                 <Button 
                     Grid.Column="1" 
                     Content="Dodaj Quiz" 
-                    VerticalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Background="Teal"
+                    Style="{StaticResource ButtonStyle}"
                     Command="{Binding OpenAddQuizWindowCommand}"/>
             </Grid>
-            <ListView Grid.Row="1" ItemsSource="{Binding Quizes}">
+            
+            <ListView 
+                Grid.Row="1"
+                Background="Transparent"
+                BorderThickness="0"
+                ItemsSource="{Binding Quizes}" d:ItemsSource="{d:SampleData ItemCount=5}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch">
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="300" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock 
-                                Grid.Column="0" 
-                                Text="{Binding Title}" />
+                            <TextBlock
+                                Text="{Binding Title}"
+                                VerticalAlignment="Center"
+                                Margin="5 0 0 0"
+                                FontSize="15"
+                                FontWeight="Bold"
+                                Foreground="White"/>
+                            
                             <Button 
                                 Grid.Column="1" 
-                                Content="Edytuj pytania" 
-                                Margin="30 0 0 0" 
+                                Content="Edytuj pytania"
+                                FontSize="12"
+                                Background="Teal"
+                                Style="{StaticResource ButtonStyle}"
                                 Command="{Binding NavigateToQuestListCommand}"/>
+                            
                             <Button 
                                 Grid.Column="2" 
                                 Content="Rozwiązuj Quiz"
-                                Margin="30 0 0 0" 
+                                FontSize="12"
+                                Background="Firebrick"
+                                Style="{StaticResource ButtonStyle}"
                                 Command="{Binding OpenSolveQuizWindowCommand}"/>
                         </Grid>
                     </DataTemplate>
